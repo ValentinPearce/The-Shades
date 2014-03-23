@@ -13,9 +13,10 @@
 	"The Shades" est un jeu d'aventure textuel pour un joueur. Le 
 joueur est dans un quartier mal famé duquel il doit s'échapper. Le quartier 
 est découpé en zone. Chaque zone possède des "routes" vers des zones 
-contigues, en empruntant ces routes le joueur se déplace entre les cases. 
+contigues, en empruntant ces routes le joueur se déplace entre les zones. 
 Pour sortir du quartier le joueur doit atteindre le bord du quartier avant 
 un temps donné sinon il est considéré comme égaré.
+Chaque partie est différente car la carte est générée aléatoirement.
 
 	2.1 Règles du jeu
 		-Il faut s'échapper d'un quartier mal famé et dangereux 
@@ -31,4 +32,10 @@ un temps donné sinon il est considéré comme égaré.
 		-La zone de jeu est un tableau de 7*7(possibilité 
 		d'évolution) cases dont 2 côtés
 		consécutifs sont la zone de victoire
-		
+		-Les combats s'effectuent au tour-par-tour
+		-Le joueur peut trouver de l'équipement en fouillant les zones
+		-L'équipement améliore les compétences du joueur
+		#-Le joueur peut avoir une arme, un objet de défense et une armure
+		-L'équipement et le terrain sont générés aléatoirement en 
+		début de partie
+		-
