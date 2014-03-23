@@ -5,11 +5,30 @@
 	Nous appellerons notre jeu "The Shades".
 	
 	1.2 Contexte
-		Le "The Shades" est un jeu qui sera développé 
+		Le projet "The Shades" est un jeu qui sera développé 
 	en s'appuyant sur les méthodes de développement vues en cours. 
 	Il répond à la demande de projet personnel du second semestre.
 
 2. Expression du besoin
-	"The Shades" est un jeu d'aventure textuel pour un joueur. Le joueur est dans un quartier mal famé duquel il doit s'échapper. Le quartier est découpé en zone. Chaque zone possède des "routes" vers des zones contigues, en empruntant ces routes le joueur se déplace entre les cases. Pour sortir du quartier le joueur doit atteindre 
-J'aime pas perdre
+	"The Shades" est un jeu d'aventure textuel pour un joueur. Le 
+joueur est dans un quartier mal famé duquel il doit s'échapper. Le quartier 
+est découpé en zone. Chaque zone possède des "routes" vers des zones 
+contigues, en empruntant ces routes le joueur se déplace entre les cases. 
+Pour sortir du quartier le joueur doit atteindre le bord du quartier avant 
+un temps donné sinon il est considéré comme égaré.
 
+	2.1 Règles du jeu
+		-Il faut s'échapper d'un quartier mal famé et dangereux 
+		avant de se perdre
+		-Le jeu se joue seul
+		-Toutes les actions se font par le biais de mots-clés 
+		(attaquer; nord; ...)
+		-Le jeu s'arrête si : 
+			-le joueur sort du quartier
+			-le joueur meurt (plus de vie)
+			-le joueur se perd (temps écoulé)
+		-Chaque action demande du temps
+		-La zone de jeu est un tableau de 7*7(possibilité 
+		d'évolution) cases dont 2 côtés
+		consécutifs sont la zone de victoire
+		
