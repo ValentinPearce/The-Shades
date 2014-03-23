@@ -5,7 +5,7 @@
 	Nous appellerons notre jeu "The Shades".
 	
 	1.2 Contexte
-		Le projet "The Shades" est un jeu qui sera développé 
+		Le "The Shades" est un jeu qui sera développé 
 	en s'appuyant sur les méthodes de développement vues en cours. 
 	Il répond à la demande de projet personnel du second semestre.
 
