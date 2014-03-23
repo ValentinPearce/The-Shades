@@ -5,9 +5,11 @@
 	Nous appellerons notre jeu "The Shades".
 	
 	1.2 Contexte
-	PERDU	Le projet "The Shades" est un jeu qui sera développé 
+		Le projet "The Shades" est un jeu qui sera développé 
 	en s'appuyant sur les méthodes de développement vues en cours. 
 	Il répond à la demande de projet personnel du second semestre.
 
 2. Expression du besoin
 	"The Shades" est un jeu d'aventure textuel pour un joueur. Le joueur est dans un quartier mal famé duquel il doit s'échapper. Le quartier est découpé en zone. Chaque zone possède des "routes" vers des zones contigues, en empruntant ces routes le joueur se déplace entre les cases. Pour sortir du quartier le joueur doit atteindre 
+J'aime pas perdre
+
