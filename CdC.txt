@@ -1,7 +1,7 @@
 1. Objectifs
 	1.1 Description générale
 		Dans le cadre du cours de MDD nous souhaitons réaliser un jeu 
-	d'aventure textuel qui se déroule dans la ville fictive d'Ank Morpork. 
+	d'aventure textuel qui se déroule dans la ville fictive d'Ankh Morpork. 
 	Nous appellerons notre jeu "The Shades".
 	
 	1.2 Contexte
@@ -29,7 +29,7 @@ Chaque partie est différente car la carte est générée aléatoirement.
 			-le joueur meurt (plus de vie)
 			-le joueur se perd (temps écoulé)
 		-Chaque action demande du temps
-		-La zone de jeu est un tableau de 7*7(possibilité 
+		-La zone de jeu est un tableau de 7*7 (possibilité
 		d'évolution) cases dont 2 côtés
 		consécutifs sont la zone de victoire
 		-Les combats s'effectuent au tour-par-tour
