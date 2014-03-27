@@ -1,4 +1,6 @@
-controls = ["observer","nord","sud","est","west","n","s","e","w","crier","merde","help"]
+import string
+from string import *
+controls = ["observer","nord","sud","est","west","n","s","e","w","crier","merde","aide"]
 
 def act():
     print "Que voulez-vous faire?"
@@ -16,7 +18,7 @@ def act():
         print "Vous vous deplacez vers l'Ouest"
     elif command[0] ==  controls[9] :
         for i in range (1,len(command)):
-            print uppercase(command[i]),
+            print (command[i]),
         print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     elif command[0] == controls[10] :
         print "Ne soyez tout de meme pas vulgaire."
