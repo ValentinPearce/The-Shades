@@ -1,0 +1,36 @@
+Noms :
+-joueur
+-carte
+-partie
+-alentours
+-équipement
+    -armes
+    -consommables
+-temps
+-limite de temps
+-texte
+
+Verbes :
+-nommer
+-générer
+    -récupérer
+-jouer
+-se déplacer
+-observre
+-ramasser
+-se battre
+-perdre
+-mourir
+-dépasser
+-gagner
+-colorer
+===============================================
+type: Game = struct
+    player : Player
+    map : Map
+
+type: Player = struct
+    name : chaîne    
+    health : entier
+    spentTime : entier
+type: Map = table
