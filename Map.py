@@ -1,11 +1,6 @@
 import random
 map=[]
 path=[]
-for i in range (6): #creation d'une carte vierge
-    map.append([])
-    for j in range (6):
-        map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0})
-
 def nextArea():
     global i,j,visited
     chosen = 0
@@ -24,9 +19,10 @@ def nextArea():
     if j>0 :
         if map[i][j-1]['north']== 0 and map[i][j-1]['south']== 0 and map[i][j-1]['east']== 0 and map[i][j-1]['west']== 0 :
             s = 1
-    if j>5 :
+    if j<5 :
         if map[i][j+1]['north']== 0 and map[i][j+1]['south']== 0 and map[i][j+1]['east']== 0 and map[i][j+1]['west']== 0 :
             n = 1
+    print n,s,e,w,n+e+s+w
     if n+s+e+w > 0:
         while chosen == 0:
             dir = random.randint(0,3)
@@ -50,7 +46,7 @@ def nextArea():
                 chosen = 1
                 map[i][i]['north'] = 1
                 map[i][j+1]['south'] = 1
-                j = j-1
+                j = j+1
                 visiting = i,j
                 path.append(visiting)
                 visited = visited + 1
@@ -58,14 +54,15 @@ def nextArea():
                 chosen = 1
                 map[i][j]['south'] = 1
                 map[i][j-1]['north'] = 1
-                j = j+1
+                j = j-1
                 visiting = i,j
                 path.append(visiting)
                 visited = visited + 1
-        else:
+    else:
          path.pop(len(path)-1)
          i = path[len(path) - 1][0]
          j = path[len(path) - 1][1]
+        
 #=========================================================
 i = random.randint(0,5)
 j = random.randint(0,5)
@@ -79,7 +76,7 @@ for i in range (6): #creation d'une carte vierge
         map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0})
 
 loop = 0
-while visited < 37 :
+while visited < 36 :
     nextArea()
     print visited
     loop = loop + 1
