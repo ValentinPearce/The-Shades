@@ -25,12 +25,21 @@ Verbes :
 -gagner
 -colorer
 ===============================================
-type: Game = struct
+type : Game = struct
     player : Player
     map : Map
-
-type: Player = struct
+    items : Items
+type : Player = struct
     name : chaîne    
     health : entier
     spentTime : entier
-type: Map = table
+    equiped : entier
+    inventory : liste d'entiers
+type : Map = struct
+    (coord_x,coord_y) : Area
+type : Area = struct
+    items : liste d'entiers
+    north : booléen
+    south : booléen
+    east : booléen
+    west : booléen
