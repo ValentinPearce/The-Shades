@@ -35,7 +35,7 @@ type : Player = struct
     spentTime : entier
     equiped : entier
     inventory : liste d'entiers
-type : Map = struct
+type : Map = liste de listes
     (coord_x,coord_y) : Area
 type : Area = struct
     items : liste d'entiers
@@ -43,3 +43,9 @@ type : Area = struct
     south : booléen
     east : booléen
     west : booléen
+type : Items = struct
+    index : entier
+    name : chaîne de caractères
+    descript : chaîne de caractères
+    type : booléen
+    modifier : entier
