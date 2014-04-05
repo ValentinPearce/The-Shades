@@ -78,9 +78,12 @@ for i in range (6): #creation d'une carte vierge
     for j in range (6):
         map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0})
 
-
+loop = 0
 while visited < 37 :
     nextArea()
+    print visited
+    loop = loop + 1
+    print loop
 
 #""" 
 line=['','','','','','']
