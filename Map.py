@@ -86,7 +86,7 @@ def nextArea():
                 visited = visited + 1
 #                printMap()
     else:
-         print 'BACK'
+#         print 'BACK'
          path.pop(len(path)-1)
          i = path[len(path) - 1][0]
          j = path[len(path) - 1][1]
