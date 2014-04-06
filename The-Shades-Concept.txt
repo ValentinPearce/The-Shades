@@ -36,6 +36,7 @@ type : Player = struct
     spentTime : entier
     equiped : entier
     inventory : liste d'entiers
+    coordinates : tuple
 type : Map = liste de listes
     (coord_x,coord_y) : Area
 type : Area = struct
@@ -57,13 +58,13 @@ Main.main()
 +---Main.init()
 |   +---Player.setName()
 |   +---Map.generate()
+|       +---Map.createEmpty()
+|       +---Map.createMaze()
 +---Main.run()
     +---Game.checkHealth()
     |   +---Game.lose()
-    |       +---Main.finish()
     +---Game.checkTime()
     |   +---Game.lose()
-    |       +Main.finish()
     +---Main.display()
     +---Main.interact()
 
@@ -78,11 +79,13 @@ Main.interact()
 +---Game.getAction()
     +---Game.move(direction)
     |   +---Game.win()
-    |       +---Main.finish()
     +---Game.descript()
     +---Game.altDescript()
     +---Game.inventory()
     +---Game.fight()
+    |   +---Player.healthEdit(modifier)
     +---Game.use()
+    |   +---Player.healthEdit(modifier)
+    |   +---Player.equip(index)
     +---Game.take()
-    +---Game.drop
+    +---Game.drop()
