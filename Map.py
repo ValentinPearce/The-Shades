@@ -2,30 +2,14 @@ import random
 map=[]
 path=[]
 
-def printMap():
-
-    line=['','','','','','']
-    for i in range (6): #creation d'un visuel de carte
+def createEmpty():
+    for i in range (6): #creation d'une carte vierge
+        map.append([])
         for j in range (6):
-            if map[i][j]['west']== 0:
-                line[i]=line[i]+'|'
-            else:
-                line[i]=line[i]+' '
-            if map[i][j]['north']== 0 and map [i][j]['south']== 0:
-                line[i]=line[i]+'='
-            elif map[i][j]['north']== 0:
-                line[i]=line[i]+'^'
-            elif map[i][j]['south']== 0:
-                line[i]=line[i]+'_'
-            else:
-                line[i]=line[i]+' '
-            if map[i][j]['east']== 0:
-                line[i]=line[i]+'|'
-            else:
-                line[i]=line[i]+' '
-        print line[i]
+            map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0})
+
     
-def nextArea():
+def createMaze():
     global i,j,visited
     chosen = 0
     n = 0
@@ -90,20 +74,39 @@ def nextArea():
          path.pop(len(path)-1)
          i = path[len(path) - 1][0]
          j = path[len(path) - 1][1]
+
+def printMap():
+    line=['','','','','','']
+    for i in range (6): #creation d'un visuel de carte
+        for j in range (6):
+            if map[i][j]['west']== 0:
+                line[i]=line[i]+'|'
+            else:
+                line[i]=line[i]+' '
+            if map[i][j]['north']== 0 and map [i][j]['south']== 0:
+                line[i]=line[i]+'='
+            elif map[i][j]['north']== 0:
+                line[i]=line[i]+'^'
+            elif map[i][j]['south']== 0:
+                line[i]=line[i]+'_'
+            else:
+                line[i]=line[i]+' '
+            if map[i][j]['east']== 0:
+                line[i]=line[i]+'|'
+            else:
+                line[i]=line[i]+' '
+        print line[i]
         
 #=========================================================
+createEmpty()
+
 i = random.randint(0,5)
 j = random.randint(0,5)
 visiting = i,j
 path.append(visiting)
 visited = 1
 
-for i in range (6): #creation d'une carte vierge
-    map.append([])
-    for j in range (6):
-        map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0})
-
 while visited < 36 :
-    nextArea()
+    createMaze()
 #    print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
 #printMap()
