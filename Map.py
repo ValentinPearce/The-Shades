@@ -96,17 +96,20 @@ def printMap():
             else:
                 line[i]=line[i]+' '
         print line[i]
-        
+def addItem(position,index):
+    map[position[0]][position[1]]['items'].append(index)            
+def removeItem(position,index):
+    map[position[0]][position[1]]['items'].pop(index)            
 #=========================================================
-createEmpty()
+def generate():
+    createEmpty()
+    visiting = random.randint(6),random.randint(6)
+    i = visiting[0]
+    j = visiting[1]
+    path.append(visiting)
+    visited = 1
 
-i = random.randint(0,5)
-j = random.randint(0,5)
-visiting = i,j
-path.append(visiting)
-visited = 1
-
-while visited < 36 :
-    createMaze()
-#    print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+    while visited < 36 :
+        createMaze()
+#        print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
 #printMap()
