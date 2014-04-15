@@ -1,23 +1,29 @@
 import Map
 import Player
 import Monsters
+import Background
+
+description = ' '
 
 def init():
-    global descript
+    global descript, myBackground
     Player.setName()
     Player.setHealth()
     Map.generate()
     descript = descript()
+    myBackground=Background.create("background","victoire","defaite")
 
 def checkHealth():
     if Player.getHealth()<= 0:
 	lose()
 
 def descript():
-    Map.getDescript(Player.getPosition())
+    global description
+    description = Map.getDescript(Player.getPosition())
 
 def altDescript():
-    Map.getAltDescript(Player.getPosition())
+    global description
+    description = Map.getAltDescript(Player.getPosition())
 
 def move(direction):
     answer = Map.checkDirection(Player.getPosition(),direction)
@@ -29,15 +35,19 @@ def move(direction):
     else :
         win()
     Player.editTime(-10)
+
 def win():
-    print 'bob'
+    show(myBackground,"win")
   
 def lose():
-    print 'bob'
+    show(myBackground,"lose")
 
 def display(description):
-    print 'bob'
+    show(myBackgroung,"bg")
+    #affichage des commandes et de la description
     
 def getAction():
     print 'bob'
     
+def checkTime():
+    print 'bob'

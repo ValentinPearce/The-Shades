@@ -14,7 +14,7 @@ def editHealth(modifier):
 	player['health']=player['health']+modifier
 
 def setHealth():
-	player['health']=14+random.randint(6)+randint(6)
+	player['health']=12+random.randint(1,6)+random.randint(1,6)
 
 def move(direction):
 	if direction=="north":
