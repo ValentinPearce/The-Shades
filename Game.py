@@ -37,17 +37,18 @@ def move(direction):
     Player.editTime(-10)
 
 def win():
-    show(myBackground,"win")
+    Background.show(myBackground,"win")
   
 def lose():
-    show(myBackground,"lose")
+    Background.show(myBackground,"lose")
 
 def display(description):
-    show(myBackgroung,"bg")
+    Background.show(myBackground,"bg")
     #affichage des commandes et de la description
     
 def getAction():
     print 'bob'
     
 def checkTime():
-    print 'bob'
+    if (Player.getTime()>180):
+        lose()
