@@ -1,8 +1,12 @@
-import Game
+import termios
 import tty
 import sys
 import select
-import termios
+
+import Game
+import Background
+
+description = ''
 
 def init():
     Game.init()
