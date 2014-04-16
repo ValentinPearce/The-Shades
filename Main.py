@@ -1,4 +1,4 @@
-import Game.py
+import Game
 import tty
 import sys
 import select

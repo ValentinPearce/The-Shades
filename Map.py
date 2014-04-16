@@ -1,6 +1,9 @@
 import random
 map=[]
 path=[]
+visited=0
+i=0
+j=0
 
 def createEmpty():
     for i in range (6): #creation d'une carte vierge
@@ -10,7 +13,7 @@ def createEmpty():
 
     
 def createMaze():
-    global i,j,visited
+    global visited,i,j
     chosen = 0
     n = 0
     s = 0
@@ -42,6 +45,7 @@ def createMaze():
                 path.append(visiting)
                 visited = visited + 1
 #                printMap()
+#                print 'west'
             elif dir == 1 and e == 1:
                 chosen = 1
                 map[i][j]['east'] = 1
@@ -51,6 +55,7 @@ def createMaze():
                 path.append(visiting)
                 visited = visited + 1
 #                printMap()
+#                print 'east'
             elif dir == 2 and s == 1:
                 chosen = 1
                 map[i][j]['south'] = 1
@@ -60,6 +65,7 @@ def createMaze():
                 path.append(visiting)
                 visited = visited + 1
 #                printMap()
+#                print 'south'
             elif dir == 3 and n == 1:
                 chosen = 1
                 map[i][j]['north'] = 1
@@ -69,6 +75,7 @@ def createMaze():
                 path.append(visiting)
                 visited = visited + 1
 #                printMap()
+#                print 'north'
     else:
 #         print 'BACK'
          path.pop(len(path)-1)
@@ -96,14 +103,75 @@ def printMap():
             else:
                 line[i]=line[i]+' '
         print line[i]
+
 def addItem(position,index):
     map[position[0]][position[1]]['items'].append(index)            
+
 def removeItem(position,index):
     map[position[0]][position[1]]['items'].pop(index)            
+
+def check(position, direction):
+    answer = map[position[0]][position[1]][direction]
+    return answer
+
+def getDescript(position):
+    n = check(position,'north')
+    s = check(position,'south')
+    e = check(position,'east')
+    w = check(position,'west')
+    descript = 'La zone dans laquelle vous vous trouvez a'
+    if n>0 and s+e+w>0 :
+        descript = descript + " une sortie au nord"
+        if s > 0 and e+w>0:
+            descript = descript + ", une sortie au sud"
+            if e>0 and w>0:
+                descript = descript + ", une sortie a l'est et une sortie a l'ouest."
+            elif e>0 and w==0:
+                descript = descript + " et une sortie a l'est."
+            else :
+                descript = descript + " et une sortie a l'ouest."
+        elif s>0 :
+            descript = descript + " et une sortie au sud."
+        elif e>0 and w>0:
+            descript = descript + ", une sortie a l'est et une sortie a l'ouest."
+        elif e>0 and w==0:
+            descript = descript + " et une sortie a l'est."
+        else:
+            descript = descript + " et une sortie a l'ouest."
+    elif n>0:
+        descript = descript + " une sortie au nord."
+    elif s > 0 and e+w>0:
+        descript = descript + " une sortie au sud"
+        if e>0 and w>0:
+            descript = descript + ", une sortie a l'est et une sortie a l'ouest."
+        elif e>0 and w==0:
+            descript = descript + " et une sortie a l'est."
+        else:
+            descript = descript + " et une sortie a l'ouest."
+    elif s>0:
+        descript = descript + " une sortie au sud."
+    elif e>0 and w>0:
+        descript = descript + " une sortie a l'est et une sortie a l'ouest."
+    elif e>0 and w==0:
+        descript = descript + " une sortie a l'est."
+    else:
+        descript = descript + " une sortie a l'ouest."
+    return descript
+def getAltDescript(position):
+    descript = getDescript(position,1)
+    s = check(position,'south')
+    e = check(position,'east')
+    if s == 2:
+        descript = descript + "\n La sortie sud est particulierement lumineuse."
+    elif e == 2:
+        descript = descript + "\n La sortie est est particulierement lumineuse."
+    return descript
+
 #=========================================================
 def generate():
+    global i,j,visited
     createEmpty()
-    visiting = random.randint(6),random.randint(6)
+    visiting = random.randint(0,5),random.randint(0,5)
     i = visiting[0]
     j = visiting[1]
     path.append(visiting)
@@ -113,3 +181,7 @@ def generate():
         createMaze()
 #        print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
 #printMap()
+#generate()
+#printMap()
+#print getDescript((4,2),0)
+#print getAltDescript((4,2))
