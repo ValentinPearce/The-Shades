@@ -109,7 +109,7 @@ def addExits():
     for exit in range(quantum):
         side = random.randint(0,1)
         if side == 0:
-            map[5][random.randin(0,5)]['south'] = 2
+            map[5][random.randint(0,5)]['south'] = 2
         else:
             map[random.randint(0,5)][5]['east'] = 2
 
@@ -188,6 +188,7 @@ def generate():
 
     while visited < 36 :
         createMaze()
+    addExits()
 
 def checkDirection(position,direction):             #Renvoie la valeur associee a la direction (0:mur, 1:sortie, 2=victoire)
     return map[position[0]][position[1]][direction]
