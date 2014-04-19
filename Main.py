@@ -14,7 +14,7 @@ def display():
     global description
     Game.display(description)
 def interact():
-    Game.getaction()
+    Game.getAction()
 def run():
     Game.checkHealth()
     Game.checkTime()
