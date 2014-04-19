@@ -1,15 +1,9 @@
-import termios
-import tty
-import sys
-import select
-
 import Game
-import Background
 
 description = ''
 
 def init():
-    Game.init()
+    description = Game.init()
 def display():
     global description
     Game.display(description)

@@ -3,7 +3,7 @@
 import sys
 import os
 
-def create (file1,file2,file3): #file1 : background; file2 : victoire; file3 : defaite
+def create (file1,file2,file3,file4): #file1 : background; file2 : victoire; file3 : defaite
 	bg=dict()
 	myfile = open(file1, "r")
 	bg["bg"]=myfile.read()
@@ -17,7 +17,11 @@ def create (file1,file2,file3): #file1 : background; file2 : victoire; file3 : d
 	bg["lose"]=myfile.read()
 	myfile.close()
 
-	return bg
+	myfile = open(file4, "r")
+        bg["menu"] = myfile.read()
+        myfile.close()
+
+        return bg
 
 def show(bg,index):
 	os.system("clear")

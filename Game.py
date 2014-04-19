@@ -2,7 +2,7 @@ import Map
 import Player
 import Monsters
 import Background
-
+import select, tty, termios, sys
 description = ' '
 
 def init():
@@ -11,8 +11,9 @@ def init():
     Player.setHealth()
     Map.generate()
     descript = descript()
-    myBackground=Background.create("background","victoire","defaite")
-
+    myBackground=Background.create("background","victoire","defaite","menu")
+    Background.show(myBackground,"menu")
+    return descript
 def checkHealth():
     if Player.getHealth()<= 0:
 	lose()
@@ -35,20 +36,41 @@ def move(direction):
     else :
         win()
     Player.editTime(-10)
+    return descript
+
+def isInput():
+   return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
 
 def win():
-    Background.show(myBackground,"win")
+    Background.show(myBackground,"win")	
   
 def lose():
     Background.show(myBackground,"lose")
 
 def display(description):
     Background.show(myBackground,"bg")
+    sys.stdout.write("\033[9;43\n")
+    sys.stdout.write(descritption)
     #affichage des commandes et de la description
     
 def getAction():
-    print 'bob'
+    if isInput():
+        key = sys.stdin.read(1)
+        if key == 'z' :
+           decript = move('north')
+        if key == 'q' :
+           descript = move('west')
+        if key == 's' :
+           descrit = move('south')
+        if key == 'd' :
+           descript = move('east')
+        if key == 'o' :
+           descript = altDescript()
+        if key == '\x1b' :
+            exitGame()
     
 def checkTime():
     if (Player.getTime()>180):
         lose()
+def exitGame():
+    sys.exit()

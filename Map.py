@@ -104,11 +104,20 @@ def printMap():
                 line[i]=line[i]+' '
         print line[i]
 
-def addItem(position,index):
-    map[position[0]][position[1]]['items'].append(index)            
+def addExits():
+    quantum = random.randint(2,4)
+    for exit in range(quantum):
+        side = random.randint(0,1)
+        if side == 0:
+            map[5][random.randin(0,5)]['south'] = 2
+        else:
+            map[random.randint(0,5)][5]['east'] = 2
 
-def removeItem(position,index):
-    map[position[0]][position[1]]['items'].pop(index)            
+#def addItem(position,index):
+#    map[position[0]][position[1]]['items'].append(index)            
+
+#def removeItem(position,index):
+#    map[position[0]][position[1]]['items'].pop(index)            
 
 def check(position, direction):
     answer = map[position[0]][position[1]][direction]
