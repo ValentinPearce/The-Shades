@@ -11,7 +11,7 @@
              0doodO0XN.'X                                           :X          ||    [O]      Observer  ||
                       O.,X                                          l0          ||              la zone  ||
                       'X                                            l0          \\=======================//
-                     0;                                             :X     
+                     0;                                             :X          
                      ,K                                           W0'      
                     O;                                            o',      
                     'X                                              ,      
@@ -20,18 +20,18 @@
                   ld                                              k:       
                   X'                                              W.N       
                  :k                                              cd        
-                X'                                              0'         
-                cx                                              'K         
-                .0  W                                          xc          
-               K:  ..'W                                       N.W          
-              N.X                                             ;k           
-              ;k                                             0,            
-             O,                                              'K            
-            X.N                                             ll             
-            'O                                          X'.,o              
-           O:                                            W;x               
-           cK  x:,;lkW                                   0'WXOkkK          
-           :kNX' W.00xlclcldxO0KXW             WNK0kdolll::llkK0:;W        
+                X'                                              0'              //=======================\\
+                cx                                              'K              ||                       ||
+                .0  W                                          xc               ||  Informations :       ||
+               K:  ..'W                                       N.W               ||                       ||
+              N.X                                             ;k                || - Joueur :            ||
+              ;k                                             0,                 || - Vie :               ||
+             O,                                              'K                 || - Temps écoulé :      ||
+            X.N                                             ll                  || - Temps limite :      ||
+            'O                                          X'.,o                   ||                       ||
+           O:                                            W;x                    \\=======================//
+           cK  x:,;lkW                                   0'WXOkkK               
+           :kNX' W.00xlclcldxO0KXW             WNK0kdolll::llkK0:;W             
            ;:Kck  kl       NK0OkdoolloooooloollodkO0XW           ol        
             W,  ,W  K,.lO                                           '        
            Ol  lc:kclxdk                                           ,        

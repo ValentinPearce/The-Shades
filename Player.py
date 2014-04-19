@@ -7,6 +7,9 @@ player={'name' :'Bob','position' :(0,0),'health' :0, 'time' :1,'inventory' :[],'
 def setName():
 	player['name']=raw_input("Quel est votre nom ? ")
 
+def getName():
+	return player['name']
+
 def getHealth():
 	return player['health']
 
@@ -18,13 +21,13 @@ def setHealth():
 
 def move(direction):
 	if direction=="north":
-		player['position']=player['position'][0]-1, player['position'][1]
+		player['position']=(player['position'][0]-1, player['position'][1])
 	elif direction=="south":
-		player['position']=player['position'][0]+1, player['position'][1]
+		player['position']=(player['position'][0]+1, player['position'][1])
 	elif direction=="east":
-		player["position"]=palyer['position'][0], player['position'][1]+1
+		player["position"]=(player['position'][0], player['position'][1]+1)
 	elif direction=="weast":
-		player['position']=player['position'][0], player['position'][1]-1
+		player['position']=(player['position'][0], player['position'][1]-1)
 
 def getPosition():
 	return player['position']

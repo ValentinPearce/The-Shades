@@ -166,17 +166,17 @@ def getDescript(position):
     else:
         descript = descript + " une sortie a l'ouest."
     return descript
+
 def getAltDescript(position):
-    descript = getDescript(position,1)
+    descript = getDescript(position)
     s = check(position,'south')
     e = check(position,'east')
     if s == 2:
-        descript = descript + "\n La sortie sud est particulierement lumineuse."
-    elif e == 2:
-        descript = descript + "\n La sortie est est particulierement lumineuse."
+        descript = descript + "La sortie sud est particulierement lumineuse."
+    if e == 2:
+        descript = descript + "La sortie est est particulierement lumineuse."
     return descript
 
-#=========================================================
 def generate():
     global i,j,visited
     createEmpty()
@@ -188,6 +188,18 @@ def generate():
 
     while visited < 36 :
         createMaze()
+
+def checkDirection(position,direction):             #Renvoie la valeur associee a la direction (0:mur, 1:sortie, 2=victoire)
+    return map[position[0]][position[1]][direction]
+
+
+
+
+
+
+
+
+
 #        print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
 #printMap()
 #generate()
