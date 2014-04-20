@@ -3,6 +3,7 @@ import Player
 import Monsters
 import Background
 import select, tty, termios, sys, time
+defaultTerminal = termios.tcgetattr(sys.stdin)
 
 
 def init():
@@ -49,16 +50,11 @@ def lose():
 
 def display(description):
     Background.show(myBackground,"bg")
-    sys.stdout.write("\033[43;9H\n")
-    sys.stdout.write(description+"\n Que voulez vous faire?")
-    sys.stdout.write("\033[95;27H\n")
-    sys.stdout.write(Player.getName())
-    sys.stdout.write("\033[92;28H\n")
-    sys.stdout.write(str(Player.getHealth()))
-    sys.stdout.write("\033[101;29H\n")
-    sys.stdout.write(str(Player.getTime()))
-    sys.stdout.write("\033[101;30H\n")
-    sys.stdout.write('500')
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (8, 8, description+"\n Que voulez vous faire?"))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (22,70,Player.getName()))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,67,str(Player.getHealth())))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (24,76,str(Player.getTime())))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (25,76,'500'))
     sys.stdout.flush()
     #affichage des commandes et de la description
     
@@ -84,4 +80,6 @@ def checkTime():
         lose()
         exitGame()
 def exitGame():
+    global defaultTerminal
+    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, defaultTerminal)
     sys.exit()
