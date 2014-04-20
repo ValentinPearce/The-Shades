@@ -59,6 +59,7 @@ def display(description):
     sys.stdout.write(str(Player.getTime()))
     sys.stdout.write("\033[101;30H\n")
     sys.stdout.write('500')
+    sys.stdout.flush()
     #affichage des commandes et de la description
     
 def getAction():
