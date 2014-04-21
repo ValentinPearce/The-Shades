@@ -5,7 +5,7 @@ import random
 player={'name' :'Bob','position' :(0,0),'health' :0, 'time' :0,'inventory' :[],'equip' :[]}
 
 def setName(): # Defini le nom du joueur
-	player['name']=raw_input("Quel est votre nom ? ")
+	player['name']=raw_input()
 
 def getName(): # Renvoie le nom du joueur
 	return player['name']
