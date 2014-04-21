@@ -119,11 +119,11 @@ def addItem(position,index):
 
 def removeItem(position,index):
     map[position[0]][position[1]]['items'].pop(index)            
+'''
 
 def check(position, direction):
     answer = map[position[0]][position[1]][direction]
     return answer
-'''
 
 def getDescript(position): # Genere la description de la zone dans laquelle se trouve le joueur.
     n = check(position,'north')
