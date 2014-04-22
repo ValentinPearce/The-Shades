@@ -12,7 +12,7 @@ def init(): # Defini les variables de depart
     Background.show(myBackground,"menu")
     Player.setName()
     Player.setHealth()
-    Map.generate(6)
+    Map.generate(20)
     descript = descript()
     tty.setcbreak(sys.stdin.fileno())
     return descript
