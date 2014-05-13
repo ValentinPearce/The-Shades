@@ -1,4 +1,4 @@
-# Non implemente pour l'instant
+import random
 monsters = (
     {"name": "un mendiant affame", "rate" : 3, "skill" : 6, "health" : 6, "fight" : "Le mendiant affamé"},
     {"name" : "un mendiant", "rate" : 4, "skill" : 7, "health" : 6, "fight" : "Le mendiant"},
@@ -17,3 +17,12 @@ monsters = (
     {"name" : "Lord helix", "rate" : 5, "skill" : 12 , "health" : 14, "fight" : "Lord Helix"},
     {"name" : "Alduin le dragon", "rate" : 3, "skill" : 12, "health" : 16, "fight" : "Alduin"},
     {"name" : "une licorne rose invisible", "rate" : 1, "skill" :  14, "health" : 20, "fight" : "La Licorne Rose Invisible"})
+
+def addRandom():
+    monster = random.randint(1,100)
+    rate = 0
+    index = 0
+    while rate < monster:
+        rate += monsters[index]["rate"] 
+        index += 1
+    return monsters[index]
