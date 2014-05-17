@@ -1,4 +1,4 @@
-import random
+import random, Monster
 map=[]
 path=[]
 visited=0
@@ -9,7 +9,7 @@ def createEmpty(size): # Cree une carte vide.
     for i in range (size):
         map.append([])
         for j in range (size):
-            map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0})
+            map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0, "monster" : 0 })
 
     
 def createMaze(size): # Cree un labyrinthe parfait.
@@ -112,7 +112,14 @@ def addExits(size): # Ajoute des sorties (condition de victoire) au labyrinte
             map[size - 1][random.randint(0,size - 1)]['south'] = 2
         else:
             map[random.randint(0,size - 1)][size - 1]['east'] = 2
-
+def setMonsterItems(size):
+    for i in range (size):
+        for j in range (size):
+            site = random.randint(5)
+            if site >= 3:
+                map["monster"] = Monster.addRandom()
+            elif site > 0:
+                map["items"].append(Items.addRandom())
 ''' Non implemente pour le moment
 def addItem(position,index):
     map[position[0]][position[1]]['items'].append(index)            
