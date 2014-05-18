@@ -20,9 +20,9 @@ monsters = (
 
 def addRandom():
     monster = random.randint(1,100)
-    rate = 0
+    rate = monsters[0]["rate"]
     index = 0
     while rate < monster:
-        rate += monsters[index]["rate"] 
+        rate += monsters[index + 1]["rate"] 
         index += 1
     return monsters[index]

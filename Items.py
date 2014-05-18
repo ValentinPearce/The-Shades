@@ -21,9 +21,10 @@ items = (
 
 def addRandom():
 	item = random.randint(1,100)
-	rate = 0
+	rate = items[0]["rate"]
 	index = 0
 	while rate < item:
-		rate += items [index]["rate"]
+		print rate, item, index
+		rate += items[index + 1]["rate"]
 		index += 1
 	return items[index]
