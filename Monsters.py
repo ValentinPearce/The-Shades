@@ -1,6 +1,6 @@
 import random
 monsters = (
-    {"name": "un mendiant affame", "rate" : 3, "skill" : 6, "health" : 6, "fight" : "Le mendiant affamé"},
+    {"name": "un mendiant affame", "rate" : 3, "skill" : 6, "health" : 6, "fight" : "Le mendiant affame"},
     {"name" : "un mendiant", "rate" : 4, "skill" : 7, "health" : 6, "fight" : "Le mendiant"},
     {"name" : "un mendiant en colere", "rate" : 6, "skill" :  7, "health" : 8, "fight" : "Le mendiant en colere"},
     {"name" : "un chien enrage", "rate" : 7, "skill" : 8, "health" : 8, "fight" : "Le chien enrage"},

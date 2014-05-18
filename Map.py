@@ -1,4 +1,4 @@
-import random, Monster
+import random, Monsters, Items
 map=[]
 path=[]
 visited=0
@@ -112,14 +112,15 @@ def addExits(size): # Ajoute des sorties (condition de victoire) au labyrinte
             map[size - 1][random.randint(0,size - 1)]['south'] = 2
         else:
             map[random.randint(0,size - 1)][size - 1]['east'] = 2
-def setMonsterItems(size):
+def setMonstersItems(size):
     for i in range (size):
         for j in range (size):
-            site = random.randint(5)
-            if site >= 3:
-                map["monster"] = Monster.addRandom()
-            elif site > 0:
-                map["items"].append(Items.addRandom())
+            if (i,j) != (0,0) :
+                site = random.randint(0,4)
+                if site >= 3:
+                    map[i][j]["monster"] = Monsters.addRandom()
+                elif site > 0:
+                    map[i][j]["items"].append(Items.addRandom())
 ''' Non implemente pour le moment
 def addItem(position,index):
     map[position[0]][position[1]]['items'].append(index)            
@@ -184,6 +185,17 @@ def getAltDescript(position): # Ajoute quelques informations a la description de
         descript = descript + " La sortie sud est particulierement lumineuse."
     if e == 2:
         descript = descript + " La sortie est est particulierement lumineuse."
+    list = map[position[0]][position[1]]["items"]
+    if len(list) > 0:
+        descript += " Au sol, vous voyez "
+        for i in range (len(list)):
+            descript += list[i]["name"]
+        if len(list) - i ==1:
+            descript += "."
+        elif len(list) - i == 2:
+            descript += " et "
+        else:
+            descript += ", "
     return descript
 
 def generate(size): # Fonction principale du module
@@ -198,9 +210,7 @@ def generate(size): # Fonction principale du module
     while visited < size*size :
         createMaze(size)
     addExits(size)
-
-def checkDirection(position,direction):             #Renvoie la valeur associee a la direction (0:mur, 1:sortie, 2=victoire)
-    return map[position[0]][position[1]][direction]
+    setMonstersItems(size)
 
 
 

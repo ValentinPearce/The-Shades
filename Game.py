@@ -29,7 +29,7 @@ def altDescript(): # Recupere la description avancee de la zone active
     return Map.getAltDescript(Player.getPosition())
 
 def move(direction): # Deplace le joueur si possible
-    answer = Map.checkDirection(Player.getPosition(),direction)
+    answer = Map.check(Player.getPosition(),direction)
     if answer == 0:
 	return 'Il y a un mur dans cette direction'
     elif answer == 1 :
