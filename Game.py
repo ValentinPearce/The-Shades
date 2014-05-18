@@ -4,7 +4,7 @@ import Monsters
 import Background
 import select, tty, termios, sys, time
 defaultTerminal = termios.tcgetattr(sys.stdin)
-
+items = 0
 
 def init(): # Defini les variables de depart
     global descript, myBackground
@@ -73,7 +73,42 @@ def getAction(): # Traite les interactions clavier
     while 1:
         if isInput():
             key = sys.stdin.read(1)
-            if key == 'z' :
+            if key == '1' and items >= 1 :
+                if pick == 1:
+                    return pickItem(0)
+                elif throw == 1:
+                    return throwItem(0)
+                elif use == 1
+                    return useItem(0)
+            elif key == '2' and items >= 2 :
+                if pick == 1:
+                    return pickItem(1)
+                elif throw == 1:
+                    return throwItem(1)
+                elif use == 1
+                    return useItem(1)
+            elif key == '3' and items >= 3 :
+                if pick == 1:
+                    return pickItem(2)
+                elif throw == 1:
+                    return throwItem(2)
+                elif use == 1
+                    return useItem(2)
+            elif key == '4' and items >= 4 :
+                if pick == 1:
+                    return pickItem(3)
+                elif throw == 1:
+                    return throwItem(3)
+                elif use == 1
+                    return useItem(3)
+            elif key == '5' and items >= 5 :
+                if pick == 1:
+                    return pickItem(4)
+                elif throw == 1:
+                    return throwItem(4)
+                elif use == 1
+                    return useItem(4)
+            elif key == 'z' :
                 return move('north')
             elif key == 'q' :
                 return move('west')
@@ -83,6 +118,14 @@ def getAction(): # Traite les interactions clavier
                 return move('east')
             elif key == 'o' :
                 return altDescript()
+            elif key == 'r' :
+                return pickList()
+            elif key == 'j' :
+                return throwList()
+            elif key == 'e' :
+                return useList()
+            elif key == 'a' :
+                return attack()
             elif key == '\x1b' :
                 exitGame()
             time.sleep(0.2)	
@@ -92,6 +135,32 @@ def checkTime(): # Verifie si le joueur est considere comme perdu a jamais
         lose()
         exitGame()
 
+def pickList():
+    global items, throw
+    items = Map.isItem(Player.getPosition())
+    if items == 0
+        return "Il n'y a pas d'objets dans cette zone."
+    else:
+        pick = 1
+        return "Quel objet voulez-vous ramasser? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Map.getItemList(Player.getPosition())
+
+def throwList():
+    global items, throw
+    items = Player.isItem()
+    if items == 0
+        return "Vous n'avez pas d'objets dans votre inventaire."
+    else:
+        throw = 1
+        return "Quel objet voulez-vous jeter? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Player.getItemList()
+def useList():
+    global items, use
+    items = Map.isItem(Player.getPosition())
+    if items == 0
+        return "Vous n'avez pas d'objets dans votre inventaire."
+    else:
+        use = 1
+        return "Quel objet voulez-vous utiliser? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Map.getItemList()
+    
 def exitGame(): # Quitte le jeu en remettant les parametres par defaut
     global defaultTerminal
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, defaultTerminal)
