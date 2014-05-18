@@ -52,3 +52,5 @@ def equip(index):
 	player['equip'].pop(0)
 	player['equip'].append(index)
 '''
+def isItem():
+	return len(player["inventory"])
