@@ -24,7 +24,6 @@ def addRandom():
 	rate = items[0]["rate"]
 	index = 0
 	while rate < item:
-		print rate, item, index
 		rate += items[index + 1]["rate"]
 		index += 1
 	return items[index]
