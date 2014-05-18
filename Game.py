@@ -96,3 +96,5 @@ def exitGame(): # Quitte le jeu en remettant les parametres par defaut
     global defaultTerminal
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, defaultTerminal)
     sys.exit()
+
+

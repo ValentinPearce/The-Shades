@@ -214,7 +214,9 @@ def generate(size): # Fonction principale du module
     addExits(size)
     setMonstersItems(size)
 
-
+def isItem(position):
+	return 	len(map[position[0],position[1]]["items"])
+	
 
 
 
