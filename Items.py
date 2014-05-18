@@ -6,7 +6,7 @@ items = (
 	{"name" : "une Galette Saucisse" , "rate" : 9 , "type" : 0 , "Modifier" : 2},
 	{"name" : "des Abats" , "rate" : 10 , "type" : 0 , "Modifier" : 1},
 	{"name" : "des Jelly Babies" , "rate" : 7 , "type" : 0 , "Modifier" : 4},
-	{"name" : "une Fleu de Feu" , "rate" : 7 , "type" : 1 , "Modifier" : 1},
+	{"name" : "une Fleur de Feu" , "rate" : 7 , "type" : 1 , "Modifier" : 1},
 	{"name" : "un Arc" , "rate" : 7 , "type" : 1 , "Modifier" : 1},
 	{"name" : "une Arbalette" , "rate" : 5 , "type" : 1 , "Modifier" : 3},
 	{"name" : "un Morgenstern" , "rate" : 5 , "type" : 1 , "Modifier" : 3},

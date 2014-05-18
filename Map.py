@@ -9,7 +9,7 @@ def createEmpty(size): # Cree une carte vide.
     for i in range (size):
         map.append([])
         for j in range (size):
-            map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0, "monster" : 0 })
+            map[i].append({'items':[],'north':0,'south':0,'east':0,'west':0, "monster" : [] })
 
     
 def createMaze(size): # Cree un labyrinthe parfait.
@@ -118,7 +118,7 @@ def setMonstersItems(size):
             if (i,j) != (0,0) :
                 site = random.randint(0,4)
                 if site >= 3:
-                    map[i][j]["monster"] = Monsters.addRandom()
+                    map[i][j]["monster"].append(Monsters.addRandom())
                 elif site > 0:
                     map[i][j]["items"].append(Items.addRandom())
 ''' Non implemente pour le moment
@@ -175,6 +175,8 @@ def getDescript(position): # Genere la description de la zone dans laquelle se t
         descript = descript + " une sortie a l'est."
     else:
         descript = descript + " une sortie a l'ouest."
+    if len(map[position[0]][position[1]]["monster"]) != 0:
+        descript += " ~~~~~~~~~~~~~~~~~~~~~~~~ " + map[position[0]][position[1]]["monster"][0]["name"] + " sauvage vous attaque! Il faut vous battre!"
     return descript
 
 def getAltDescript(position): # Ajoute quelques informations a la description de base
@@ -182,12 +184,12 @@ def getAltDescript(position): # Ajoute quelques informations a la description de
     s = check(position,'south')
     e = check(position,'east')
     if s == 2:
-        descript = descript + " La sortie sud est particulierement lumineuse."
+        descript += " ~~~~~~~~~~~~~~~~~~~~~~~~~ La sortie sud est particulierement lumineuse."
     if e == 2:
-        descript = descript + " La sortie est est particulierement lumineuse."
+        descript += " ~~~~~~~~~~~~~~~~~~~~~~~~~ La sortie est est particulierement lumineuse."
     list = map[position[0]][position[1]]["items"]
     if len(list) > 0:
-        descript += " Au sol, vous voyez "
+        descript += " ~~~~~~~~~~~~~~~~~~~~~~~~~ Au sol, vous voyez "
         for i in range (len(list)):
             descript += list[i]["name"]
         if len(list) - i ==1:
