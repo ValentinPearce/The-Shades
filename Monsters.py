@@ -15,7 +15,7 @@ monsters = (
     {"name" : "Un loup-garou", "rate" : 5, "skill" : 10, "health" : 14, "fight" : "Le loup-garou"},
     {"name" : "Un troll", "rate" : 5, "skill" : 11, "health" : 14, "fight" : "Le troll"},
     {"name" : "Lord helix", "rate" : 5, "skill" : 12 , "health" : 14, "fight" : "Lord Helix"},
-    {"name" : "Alduin", "rate" : 3, "skill" : 12, "health" : 16, "fight" : "Alduin"},
+    {"name" : "Un Alduin", "rate" : 3, "skill" : 12, "health" : 16, "fight" : "Alduin"},
     {"name" : "Une licorne rose invisible", "rate" : 1, "skill" :  14, "health" : 20, "fight" : "La Licorne Rose Invisible"})
 
 def addRandom():
