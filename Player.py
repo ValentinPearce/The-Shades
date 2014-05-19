@@ -2,7 +2,7 @@
 
 import random
 
-player={'name' :'Bob','position' :(0,0),'health' :0, 'time' :0,'inventory' :[],'equip' :[]}
+player={'name' :'Bob','position' :(0,0),'health' :0,'power' : 0 , 'time' :0,'inventory' :[],'equip' :[]}
 
 def setName(): # Defini le nom du joueur
 	player['name']=raw_input()
@@ -34,23 +34,32 @@ def getPosition(): # Renvoie la position du joueur
 
 def getTime(): # Renvoie le temps passe par le joueur
 	return player['time']
+def setPower():
+	player['power']=random.randint(1,6)+random.randint(1,6)
 
+def getPower():
+	return player["power"]
 def editTime(modifier): # Modifie le temps passe par le joueur
 	player['time']=player['time']+modifier
 
-''' Non implement pour l'instant.
-def getInventory():
-	return player['inventory']
+def addItem(item): # Ajoute un objet a l'inventaire
+	player['inventory'].append(item)
 
-def addItem(index):
-	player['inventory'].append(index)
+def removeItem(index): # Retire un objet de l'inventaire
+	player['inventory'].pop(index)
 
-def removeItem(index):
-	player['inventory'].remove(index)
-
-def equip(index):
+def equip(index): # Equipe un objet
 	player['equip'].pop(0)
-	player['equip'].append(index)
-'''
-def isItem():
+	player['equip'].append(player["inventory"][index])
+
+def isItem(): # Renvoie le nombre d'objets dans l'inventaire
 	return len(player["inventory"])
+
+def isEquip():
+	return len(player["equip"])
+ 
+def getItemList(position): # Renvoie la 
+    descript = ""
+    for i in range(player["inventory"]) :
+        descript += "(" + str(i+1) + ') ' + player["inventory"][i]["liste"]
+    return descript

@@ -11,16 +11,16 @@
     \_                                      _          ||    [O]      Observer  ||
      O                                      ^_         ||              la zone  ||
      \o\                                    \(         ||   [ESC]      Quitter  ||
-      O                                     \)_        \\=======================//
-      __                                     \O        
-       (_                                     (        
-        |                                     O        
-        _^                                    __       //=======================\\
+      O                                     \)_        ||    [E]      Utiliser  ||
+      __                                     \O        ||    [J]       Jeter    ||
+       (_                                     (        ||    [R]      Ramasser  ||
+        |                                     O        \\    [A]      Attaquer  //
+        _^                                    __       //                       \\
      ^^__(                                    (_       ||                       ||
    \(__O\O^                                  _o\       ||  Informations :       ||
    (_do(OO_                                   (\       ||                       ||
    doOO( o\                                   (        || - Joueur :            ||
-   O(Odoo_    \__^_^^^__^___^_____^^^^^^^^^^__\        || - Vie :               ||
+   O(Odoo_    \__^_^^^__^___^_____^^^^^^^^^^__\        || - Vie :    Force :    ||
     O)dd__^^__^__\                                     || - Temps écoulé :      ||
                                                        || - Temps limite :      ||
                                                        ||                       ||

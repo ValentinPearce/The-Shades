@@ -112,6 +112,7 @@ def addExits(size): # Ajoute des sorties (condition de victoire) au labyrinte
             map[size - 1][random.randint(0,size - 1)]['south'] = 2
         else:
             map[random.randint(0,size - 1)][size - 1]['east'] = 2
+
 def setMonstersItems(size):
     for i in range (size):
         for j in range (size):
@@ -121,13 +122,15 @@ def setMonstersItems(size):
                     map[i][j]["monster"].append(Monsters.addRandom())
                 elif site > 0:
                     map[i][j]["items"].append(Items.addRandom())
+
+
 ''' Non implemente pour le moment
 def addItem(position,index):
     map[position[0]][position[1]]['items'].append(index)            
-
+'''
 def removeItem(position,index):
     map[position[0]][position[1]]['items'].pop(index)            
-'''
+
 
 def check(position, direction):
     answer = map[position[0]][position[1]][direction]
@@ -215,12 +218,34 @@ def generate(size): # Fonction principale du module
     setMonstersItems(size)
 
 def isItem(position):
-	return 	len(map[position[0],position[1]]["items"])
-	
+    return len(map[position[0]][position[1]]["items"])
 
+def getItemList(position):
+    descript = ""
+    for i in range(len(map[position[0]][position[1]]["items"])) :
+        descript += "(" + str(i+1) + ') ' + map[position[0]][position[1]]["items"][i]["liste"]
+    return descript
 
+def getItem(position, index):
+    return map[position[0]][position[1]]["items"][index]
 
+def getItemName(position, index):
+    return map[position[0]][position[1]]["items"][index]["name"]
 
+def isMonster(position):
+    return len(map[position[0]][position[1]]["monster"])
+
+def getMonsterHealth(position):
+    return map[position[0]][position[1]]["monster"][0]["health"]
+
+def getMonsterPower(position):
+    return map[position[0]][position[1]]["monster"][0]["power"]
+
+def editMonsterHealth(position, modifier):
+    map[position[0]][position[1]]["monster"][0]["health"] += modifier
+
+def removeMonster(position):
+    map[position[0]][position[1]]["monster"].pop(0)
 
 
 

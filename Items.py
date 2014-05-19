@@ -14,7 +14,7 @@ items = (
 	{"name" : "la Master Sword" , "rate" : 2 , "type" : 1 , "Modifier" : 6 , "liste" : "la Master Sword-----+6"},
 	{"name" : "un Lance-Pierre" , "rate" : 7 , "type" : 1 , "Modifier" : 1 , "liste" : "un Lance-Pierre-----+1"},
 	{"name" : "une Catapulte" , "rate" : 3 , "type" : 1 , "Modifier" : 5 , "liste" : "une Catapulte-------+5"},
-	{"name" : "une Claymore" , "rate" : 5 , "type" : 1 , "Modifier" : 3 , "une Claymore--------+3"},
+	{"name" : "une Claymore" , "rate" : 5 , "type" : 1 , "Modifier" : 3 , "liste" : "une Claymore--------+3"},
 	{"name" : "un Katana" , "rate" : 6 , "type" : 1 , "Modifier" : 2 , "liste" : "un Katana-----------+2"},
 	{"name" : "un Tromblon" , "rate" : 6 , "type" : 1 , "Modifier" : 2 , "liste" : "un Tromblon---------+2"})
 
