@@ -124,10 +124,9 @@ def setMonstersItems(size):
                     map[i][j]["items"].append(Items.addRandom())
 
 
-''' Non implemente pour le moment
-def addItem(position,index):
-    map[position[0]][position[1]]['items'].append(index)            
-'''
+def addItem(position,item):
+    map[position[0]][position[1]]['items'].append(item)            
+
 def removeItem(position,index):
     map[position[0]][position[1]]['items'].pop(index)            
 

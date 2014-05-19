@@ -33,7 +33,8 @@ def altDescript(): # Recupere la description avancee de la zone active
     return Map.getAltDescript(Player.getPosition())
 
 def move(direction): # Deplace le joueur si possible
-    if Map.isMonster(Player.getPosition()) == 0:
+    flee = random.randint(1,6)
+    if Map.isMonster(Player.getPosition()) == 0 or flee == 6:
         answer = Map.check(Player.getPosition(),direction)
         if answer == 0:
             return 'Il y a un mur dans cette direction'
@@ -46,6 +47,7 @@ def move(direction): # Deplace le joueur si possible
             exitGame()
     else:
         Player.editHealth(-1)
+        Player.editTime(1)
         return "Votre adversaire vous attrappe par le col et frappe a l'estomac. Battez-vous que diable!"
          
 
@@ -74,10 +76,9 @@ def display(description): # Affiche la description correspondant a la derniere a
         sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (6+line, 10, descript[line]))
     sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (22,70,Player.getName()))
     sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,67,str(Player.getHealth())))
-    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,78,str(Player.getPower())))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,78,str(Player.getPower()+Player.getEquipModifier())))
     sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (24,76,str(Player.getTime())))
     sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (25,76,'500'))
-    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (26,76,pick))
     sys.stdout.flush()
     
 def getAction(): # Traite les interactions clavier
@@ -164,6 +165,8 @@ def pickList():
         return "Quel objet voulez-vous ramasser? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Map.getItemList(Player.getPosition())
 
 def pickItem(position,index):
+    global pick
+    pick = 0
     print "add"
     Player.addItem(Map.getItem(position,index))
     print "describe"
@@ -183,6 +186,8 @@ def throwList():
         return "Quel objet voulez-vous jeter? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Player.getItemList()
 
 def throwItem(position,index):
+    global throw
+    throw = 0
     Map.addItem(position,Player.getItem(index))
     descript = "Vous jetez " + Player.getItemName(index)
     Player.removeItem(index)
@@ -198,12 +203,17 @@ def useList():
         return "Quel objet voulez-vous utiliser? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Player.getItemList()
 
 def useItem(index):
+    global use
+    use = 0
     item = Player.getItem(index)
     if item["type"] == 1:
-        Player.equxip(item)
+        Player.equip(item)
+        descript = "Vous equipez " + Player.getItemName(index)
     else:
         Player.editHealth(item["Modifier"])
-    Player.removeItem(index)
+        descript = "Vous mangez " + Player.getItemName(index)
+        Player.removeItem(index)
+    return descript
 
 def attack():
     if Map.isMonster(Player.getPosition()) == 0:
@@ -213,7 +223,7 @@ def attack():
         monsterPow = Map.getMonsterPower(Player.getPosition())
         player1, player2, monster1, monster2 = random.randint(1,6),random.randint(1,6),random.randint(1,6),random.randint(1,6)
         if Player.isEquip() == 1:
-            equipPow = Player.getModifier()
+            equipPow = Player.getEquipModifier()
         else:
             equipPow = 0
         descript = "Vous chargez tous les deux."
@@ -226,7 +236,9 @@ def attack():
         if Map.getMonsterHealth(Player.getPosition()) <= 0:
             descript += "CE coup lui est fatal. Son corps tombe tel un pantin desarticule et, quelques secondes plus tard, il se desintegre." 
             Map.removeMonster(Player.getPosition())
+    Player.editTime(1)
     return descript
+
 def exitGame(): # Quitte le jeu en remettant les parametres par defaut
     global defaultTerminal
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, defaultTerminal)

@@ -50,19 +50,31 @@ def addItem(item): # Ajoute un objet a l'inventaire
 def removeItem(index): # Retire un objet de l'inventaire
 	player['inventory'].pop(index)
 
-def equip(index): # Equipe un objet
-	player['equip'].pop(0)
-	player['equip'].append(player["inventory"][index])
+def equip(item): # Equipe un objet
+        if len(player['equip']) == 1:
+		player['equip'] = []
+	player['equip']= dict(item)
 
+def getEquipModifier():
+	if len(player['equip']):
+		return player['equip']['Modifier'] 
+	else:
+		return 0
 def isItem(): # Renvoie le nombre d'objets dans l'inventaire
 	return len(player["inventory"])
+
+def getItem(index):
+	return player["inventory"][index]
+
+def getItemName(index):
+	return player["inventory"][index]["name"]
 
 def isEquip():
 	return len(player["equip"])
  
-def getItemList(position): # Renvoie la 
+def getItemList(): # Renvoie la 
     descript = ""
-    for i in range(player["inventory"]) :
+    for i in range(len(player["inventory"])) :
         descript += "("
         if i == 0:
             descript += "W) " 
@@ -76,5 +88,5 @@ def getItemList(position): # Renvoie la
             descript += "B) "
         elif i == 5:
             descript += "N) "
-        descript += player["inventory"][i]
+        descript += player["inventory"][i]["name"]
     return descript
