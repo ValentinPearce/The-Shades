@@ -33,7 +33,7 @@ def altDescript(): # Recupere la description avancee de la zone active
     return Map.getAltDescript(Player.getPosition())
 
 def move(direction): # Deplace le joueur si possible
-    if Map.isMonster() == 0:
+    if Map.isMonster(Player.getPosition()) == 0:
         answer = Map.check(Player.getPosition(),direction)
         if answer == 0:
             return 'Il y a un mur dans cette direction'
@@ -77,6 +77,7 @@ def display(description): # Affiche la description correspondant a la derniere a
     sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,78,str(Player.getPower())))
     sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (24,76,str(Player.getTime())))
     sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (25,76,'500'))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (26,76,pick))
     sys.stdout.flush()
     
 def getAction(): # Traite les interactions clavier
@@ -84,41 +85,48 @@ def getAction(): # Traite les interactions clavier
     while 1:
         if isInput():
             key = sys.stdin.read(1)
-            if key == '1' :
+            if key == 'w' :
                 if pick == 1:
                     return pickItem(Player.getPosition(),0)
                 elif throw == 1:
                     return throwItem(Player.getPosition(),0)
                 elif use == 1:
                     return useItem(0)
-            elif key == '2' :
+            elif key == 'x' :
                 if pick == 1:
                     return pickItem(Player.getPosition(),1)
                 elif throw == 1:
                     return throwItem(Player.getPosition(),1)
                 elif use == 1:
                     return useItem(1)
-            elif key == '3' :
+            elif key == 'c' :
                 if pick == 1:
                     return pickItem(Player.getPosition(),2)
                 elif throw == 1:
                     return throwItem(Player.getPosition(),2)
                 elif use == 1:
                     return useItem(2)
-            elif key == '4' :
+            elif key == 'v' :
                 if pick == 1:
                     return pickItem(Player.getPosition(),3)
                 elif throw == 1:
                     return throwItem(Player.getPosition(),3)
                 elif use == 1:
                     return useItem(3)
-            elif key == '5' :
+            elif key == 'b' :
                 if pick == 1:
                     return pickItem(Player.getPosition(),4)
                 elif throw == 1:
                     return throwItem(Player.getPosition(),4)
                 elif use == 1:
                     return useItem(4)
+            elif key == 'n' :
+                if pick == 1:
+                    return pickItem(Player.getPosition(),5)
+                elif throw == 1:
+                    return throwItem(Player.getPosition(),5)
+                elif use == 1:
+                    return useItem(5)
             elif key == 'z' :
                 return move('north')
             elif key == 'q' :
@@ -147,7 +155,7 @@ def checkTime(): # Verifie si le joueur est considere comme perdu a jamais
         exitGame()
 
 def pickList():
-    global items, throw
+    global items, pick
     items = Map.isItem(Player.getPosition())
     if items == 0:
         return "Il n'y a pas d'objets dans cette zone."
@@ -156,9 +164,13 @@ def pickList():
         return "Quel objet voulez-vous ramasser? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Map.getItemList(Player.getPosition())
 
 def pickItem(position,index):
+    print "add"
     Player.addItem(Map.getItem(position,index))
+    print "describe"
     descript = "Vous ramassez " + Map.getItemName(position,index)
+    print "remove"
     Map.removeItem(position,index)
+    print "return"
     return descript
 
 def throwList():
@@ -194,7 +206,9 @@ def useItem(index):
     Player.removeItem(index)
 
 def attack():
-    if Map.isMonster(Player.getPosition()) == 1:
+    if Map.isMonster(Player.getPosition()) == 0:
+        descript = "Qui voulez-vous attaquer dites-moi? Les murs?"
+    else :
         playerPow = Player.getPower()
         monsterPow = Map.getMonsterPower(Player.getPosition())
         player1, player2, monster1, monster2 = random.randint(1,6),random.randint(1,6),random.randint(1,6),random.randint(1,6)
@@ -208,12 +222,10 @@ def attack():
             descript += "Vous blessez votre adversaire."
         else:
             Player.editHealth(-2)
-            descript += "Votre adversaire vous blesse."
+            descript += "Votre adversaire vous blesse. "
         if Map.getMonsterHealth(Player.getPosition()) <= 0:
             descript += "CE coup lui est fatal. Son corps tombe tel un pantin desarticule et, quelques secondes plus tard, il se desintegre." 
             Map.removeMonster(Player.getPosition())
-    else :
-        descript = "Qui voulez-vous attaquer dites-moi? Les murs?"
     return descript
 def exitGame(): # Quitte le jeu en remettant les parametres par defaut
     global defaultTerminal

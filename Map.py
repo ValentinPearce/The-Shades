@@ -119,7 +119,7 @@ def setMonstersItems(size):
             if (i,j) != (0,0) :
                 site = random.randint(0,4)
                 if site >= 3:
-                    map[i][j]["monster"].append(Monsters.addRandom())
+                    map[i][j]["monster"] = dict(Monsters.addRandom())
                 elif site > 0:
                     map[i][j]["items"].append(Items.addRandom())
 
@@ -179,7 +179,7 @@ def getDescript(position): # Genere la description de la zone dans laquelle se t
     else:
         descript = descript + " une sortie a l'ouest."
     if len(map[position[0]][position[1]]["monster"]) != 0:
-        descript += " ~~~~~~~~~~~~~~~~~~~~~~~~ " + map[position[0]][position[1]]["monster"][0]["name"] + " sauvage vous attaque! Il faut vous battre!"
+        descript += " ~~~~~~~~~~~~~~~~~~~~~~~~ " + map[position[0]][position[1]]["monster"]["name"] + " sauvage vous attaque! Il faut vous battre!"
     return descript
 
 def getAltDescript(position): # Ajoute quelques informations a la description de base
@@ -223,7 +223,20 @@ def isItem(position):
 def getItemList(position):
     descript = ""
     for i in range(len(map[position[0]][position[1]]["items"])) :
-        descript += "(" + str(i+1) + ') ' + map[position[0]][position[1]]["items"][i]["liste"]
+        descript += "("
+        if i == 0:
+            descript += "W) "
+        elif i == 1:
+            descript += "X) "
+        elif i == 2:
+            descript += "C) "
+        elif i == 3:
+            descript += "V) "
+        elif i == 4:
+            descript += "B) "
+        elif i == 5:
+            descript += "N) "
+        descript += map[position[0]][position[1]]["items"][i]["liste"]
     return descript
 
 def getItem(position, index):
@@ -236,16 +249,16 @@ def isMonster(position):
     return len(map[position[0]][position[1]]["monster"])
 
 def getMonsterHealth(position):
-    return map[position[0]][position[1]]["monster"][0]["health"]
+    return map[position[0]][position[1]]["monster"]["health"]
 
 def getMonsterPower(position):
-    return map[position[0]][position[1]]["monster"][0]["power"]
+    return map[position[0]][position[1]]["monster"]["power"]
 
 def editMonsterHealth(position, modifier):
-    map[position[0]][position[1]]["monster"][0]["health"] += modifier
+    map[position[0]][position[1]]["monster"]["health"] += modifier
 
 def removeMonster(position):
-    map[position[0]][position[1]]["monster"].pop(0)
+    map[position[0]][position[1]]["monster"]=[]
 
 
 

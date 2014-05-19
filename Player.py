@@ -34,11 +34,13 @@ def getPosition(): # Renvoie la position du joueur
 
 def getTime(): # Renvoie le temps passe par le joueur
 	return player['time']
+
 def setPower():
-	player['power']=random.randint(1,6)+random.randint(1,6)
+	player['power']= random.randint(1,6) + random.randint(1,6)
 
 def getPower():
 	return player["power"]
+
 def editTime(modifier): # Modifie le temps passe par le joueur
 	player['time']=player['time']+modifier
 
@@ -61,5 +63,18 @@ def isEquip():
 def getItemList(position): # Renvoie la 
     descript = ""
     for i in range(player["inventory"]) :
-        descript += "(" + str(i+1) + ') ' + player["inventory"][i]["liste"]
+        descript += "("
+        if i == 0:
+            descript += "W) " 
+        elif i == 1:
+            descript += "X) "
+        elif i == 2:
+            descript += "C) "
+        elif i == 3:
+            descript += "V) "
+        elif i == 4:  
+            descript += "B) "
+        elif i == 5:
+            descript += "N) "
+        descript += player["inventory"][i]
     return descript
