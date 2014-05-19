@@ -33,16 +33,21 @@ def altDescript(): # Recupere la description avancee de la zone active
     return Map.getAltDescript(Player.getPosition())
 
 def move(direction): # Deplace le joueur si possible
-    answer = Map.check(Player.getPosition(),direction)
-    if answer == 0:
-	return 'Il y a un mur dans cette direction'
-    elif answer == 1 :
-        Player.move(direction)
-        Player.editTime(10)
-        return Map.getDescript(Player.getPosition())
-    else :
-        win()
-        exitGame()
+    if Map.isMonster() == 0:
+        answer = Map.check(Player.getPosition(),direction)
+        if answer == 0:
+            return 'Il y a un mur dans cette direction'
+        elif answer == 1 :
+            Player.move(direction)
+            Player.editTime(10)
+            return Map.getDescript(Player.getPosition())
+        else :
+            win()
+            exitGame()
+    else:
+        Player.editHealth(-1)
+        return "Votre adversaire vous attrappe par le col et frappe a l'estomac. Battez-vous que diable!"
+         
 
 def isInput(): # Recupere les actions du clavier
    return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
