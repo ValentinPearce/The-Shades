@@ -129,22 +129,31 @@ def getAction(): # Traite les interactions clavier
                 elif use == 1:
                     return useItem(5)
             elif key == 'z' :
+                pick, throw, use = 0,0,0
                 return move('north')
             elif key == 'q' :
+                pick, throw, use = 0,0,0
                 return move('west')
             elif key == 's' :
+                pick, throw, use = 0,0,0
                 return move('south')
             elif key == 'd' :
+                pick, throw, use = 0,0,0
                 return move('east')
             elif key == 'o' :
+                pick, throw, use = 0,0,0
                 return altDescript()
             elif key == 'r' :
+                pick, throw, use = 0,0,0
                 return pickList()
             elif key == 'j' :
+                pick, throw, use = 0,0,0
                 return throwList()
             elif key == 'e' :
+                pick, throw, use = 0,0,0
                 return useList()
             elif key == 'a' :
+                pick, throw, use = 0,0,0
                 return attack()
             elif key == '\x1b' :
                 exitGame()
@@ -160,6 +169,8 @@ def pickList():
     items = Map.isItem(Player.getPosition())
     if items == 0:
         return "Il n'y a pas d'objets dans cette zone."
+    elif Player.isItem() == 6:
+        return "Vous n'avez plus de place dans votre inventaire."
     else:
         pick = 1
         return "Quel objet voulez-vous ramasser? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Map.getItemList(Player.getPosition())

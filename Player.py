@@ -88,5 +88,5 @@ def getItemList(): # Renvoie la
             descript += "B) "
         elif i == 5:
             descript += "N) "
-        descript += player["inventory"][i]["name"]
+        descript += player["inventory"][i]["liste"]
     return descript
