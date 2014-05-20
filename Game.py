@@ -1,3 +1,7 @@
+#==================================================================================
+#INITIALISATION
+#==================================================================================
+
 import Map
 import Player
 import Monsters
@@ -21,66 +25,13 @@ def init(): # Defini les variables de depart
     tty.setcbreak(sys.stdin.fileno())
     return descript
 
-def checkHealth(): # Verifie si le joueur est vivant
-    if Player.getHealth()<= 0:
-	lose()
-        exitGame()
-
-def descript(): # Recupere la description de base de la zone active
-    return  Map.getDescript(Player.getPosition())
-
-def altDescript(): # Recupere la description avancee de la zone active
-    return Map.getAltDescript(Player.getPosition())
-
-def move(direction): # Deplace le joueur si possible
-    flee = random.randint(1,6)
-    if Map.isMonster(Player.getPosition()) == 0 or flee == 6:
-        answer = Map.check(Player.getPosition(),direction)
-        if answer == 0:
-            return 'Il y a un mur dans cette direction'
-        elif answer == 1 :
-            Player.move(direction)
-            Player.editTime(10)
-            return Map.getDescript(Player.getPosition())
-        else :
-            win()
-            exitGame()
-    else:
-        Player.editHealth(-1)
-        Player.editTime(1)
-        return "Votre adversaire vous attrappe par le col et frappe a l'estomac. Battez-vous que diable!"
-         
+#==================================================================================
+# Interaction
+#==================================================================================
 
 def isInput(): # Recupere les actions du clavier
    return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
 
-def win(): # Affiche l'ecran de victoire
-    Background.show(myBackground,"win")	
-  
-def lose(): # Affiche l'ecran de defaite
-    Background.show(myBackground,"lose")
-
-def display(description): # Affiche la description correspondant a la derniere action effectuee
-    Background.show(myBackground,"bg")
-    description = description.split()
-    descript = [""]
-    word, line = 0, 0
-    while word < len(description):
-        if len(descript[line]) + len(description[word]) + 1 <= 27:
-            descript[line] += " " + description[word]
-            word += 1
-        elif word < len(description):
-            descript.append("")
-            line +=1
-    for line in range (len(descript)):
-        sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (6+line, 10, descript[line]))
-    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (22,70,Player.getName()))
-    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,67,str(Player.getHealth())))
-    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,78,str(Player.getPower()+Player.getEquipModifier())))
-    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (24,76,str(Player.getTime())))
-    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (25,76,'500'))
-    sys.stdout.flush()
-    
 def getAction(): # Traite les interactions clavier
     global items, pick, throw, use
     while 1:
@@ -159,12 +110,35 @@ def getAction(): # Traite les interactions clavier
                 exitGame()
             time.sleep(0.2)	
 
-def checkTime(): # Verifie si le joueur est considere comme perdu a jamais
-    if (Player.getTime()>500):
-        lose()
-        exitGame()
+#==================================================================================
+#ACTIONS
+#==================================================================================
 
-def pickList():
+def descript(): # Recupere la description de base de la zone active
+    return  Map.getDescript(Player.getPosition())
+
+def altDescript(): # Recupere la description avancee de la zone active
+    return Map.getAltDescript(Player.getPosition())
+
+def move(direction): # Deplace le joueur si possible
+    flee = random.randint(1,6)
+    if Map.isMonster(Player.getPosition()) == 0 or flee == 6:
+        answer = Map.check(Player.getPosition(),direction)
+        if answer == 0:
+            return 'Il y a un mur dans cette direction'
+        elif answer == 1 :
+            Player.move(direction)
+            Player.editTime(10)
+            return Map.getDescript(Player.getPosition())
+        else :
+            win()
+            exitGame()
+    else:
+        Player.editHealth(-1)
+        Player.editTime(1)
+        return "Votre adversaire vous attrappe par le col et frappe a l'estomac. Battez-vous que diable!"
+
+def pickList(): #Renvoie la liste des objets ramassables
     global items, pick
     items = Map.isItem(Player.getPosition())
     if items == 0:
@@ -175,7 +149,7 @@ def pickList():
         pick = 1
         return "Quel objet voulez-vous ramasser? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Map.getItemList(Player.getPosition())
 
-def pickItem(position,index):
+def pickItem(position,index): #Ramasse un objet
     global pick
     pick = 0
     print "add"
@@ -187,7 +161,7 @@ def pickItem(position,index):
     print "return"
     return descript
 
-def throwList():
+def throwList(): #Renvoie la liste des objets jetables
     global items, throw
     items = Player.isItem()
     if items == 0:
@@ -196,7 +170,7 @@ def throwList():
         throw = 1
         return "Quel objet voulez-vous jeter? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Player.getItemList()
 
-def throwItem(position,index):
+def throwItem(position,index): #Jette un objet
     global throw
     throw = 0
     Map.addItem(position,Player.getItem(index))
@@ -204,7 +178,7 @@ def throwItem(position,index):
     Player.removeItem(index)
     return descript
 
-def useList():
+def useList(): #Renvoie la liste des objets utilisables
     global items, use
     items = Player.isItem()
     if items == 0:
@@ -213,7 +187,7 @@ def useList():
         use = 1
         return "Quel objet voulez-vous utiliser? (Tapez le numero correspondant) ~~~~~~~~~~~~~~~~~~~~~~~~~~ " + Player.getItemList()
 
-def useItem(index):
+def useItem(index): #Utilise un objet
     global use
     use = 0
     item = Player.getItem(index)
@@ -226,7 +200,7 @@ def useItem(index):
         Player.removeItem(index)
     return descript
 
-def attack():
+def attack(): #Gestion du combat
     if Map.isMonster(Player.getPosition()) == 0:
         descript = "Qui voulez-vous attaquer dites-moi? Les murs?"
     else :
@@ -249,6 +223,51 @@ def attack():
             Map.removeMonster(Player.getPosition())
     Player.editTime(1)
     return descript
+
+#==================================================================================
+#AFFICHAGE
+#==================================================================================
+
+def display(description): # Affiche la description correspondant a la derniere action effectuee
+    Background.show(myBackground,"bg")
+    description = description.split()
+    descript = [""]
+    word, line = 0, 0
+    while word < len(description):
+        if len(descript[line]) + len(description[word]) + 1 <= 27:
+            descript[line] += " " + description[word]
+            word += 1
+        elif word < len(description):
+            descript.append("")
+            line +=1
+    for line in range (len(descript)):
+        sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (6+line, 10, descript[line]))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (22,70,Player.getName()))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,67,str(Player.getHealth())))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (23,78,str(Player.getPower()+Player.getEquipModifier())))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (24,76,str(Player.getTime())))
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (25,76,'500'))
+    sys.stdout.flush()
+
+#==================================================================================
+#FIN DE PARTIE
+#==================================================================================
+
+def win(): # Affiche l'ecran de victoire
+    Background.show(myBackground,"win")	
+  
+def lose(): # Affiche l'ecran de defaite
+    Background.show(myBackground,"lose")
+
+def checkHealth(): # Verifie si le joueur est vivant
+    if Player.getHealth()<= 0:
+	lose()
+        exitGame()
+
+def checkTime(): # Verifie si le joueur est considere comme perdu a jamais
+    if (Player.getTime()>500):
+        lose()
+        exitGame()
 
 def exitGame(): # Quitte le jeu en remettant les parametres par defaut
     global defaultTerminal
