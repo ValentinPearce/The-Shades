@@ -2,7 +2,7 @@ import string
 from string import *
 controls = ["observer","nord","sud","est","west","n","s","e","w","crier","merde","aide"]
 
-def act():
+def getAction():
     print "Que voulez-vous faire?"
     command = raw_input()
     command = command.split()
@@ -28,5 +28,3 @@ def act():
             print controls[j]
     else:
         print "Je ne comprends pas le terme",command[0]
-
-act()

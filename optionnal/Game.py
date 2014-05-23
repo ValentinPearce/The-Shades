@@ -3,15 +3,15 @@
 #==================================================================================
 
 import Map
+import interprete
 import Player
 import Monsters
 import Background
-import select, tty, termios, sys, time, random
+import select, tty, termios, sys, time, random, string
 defaultTerminal = termios.tcgetattr(sys.stdin)
-items = 0
-pick = 0
-throw = 0
-use = 0
+pick,throw, use = 0,0,0
+
+controls = ["look","north","south","east","west","shout","attack","use","throw","pick","exit"]
 
 def init(): # Defini les variables de depart
     global descript, myBackground
@@ -22,7 +22,7 @@ def init(): # Defini les variables de depart
     Player.setPower()
     Map.generate(6)
     descript = descript()
-    tty.setcbreak(sys.stdin.fileno())
+#    tty.setcbreak(sys.stdin.fileno())
     return descript
 
 #==================================================================================
@@ -33,83 +33,31 @@ def isInput(): # Recupere les actions du clavier
    return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
 
 def getAction(): # Traite les interactions clavier
-    global items, pick, throw, use
     while 1:
-        if isInput():
-            key = sys.stdin.read(1)
-            if key == 'w' :
-                if pick == 1:
-                    return pickItem(Player.getPosition(),0)
-                elif throw == 1:
-                    return throwItem(Player.getPosition(),0)
-                elif use == 1:
-                    return useItem(0)
-            elif key == 'x' :
-                if pick == 1:
-                    return pickItem(Player.getPosition(),1)
-                elif throw == 1:
-                    return throwItem(Player.getPosition(),1)
-                elif use == 1:
-                    return useItem(1)
-            elif key == 'c' :
-                if pick == 1:
-                    return pickItem(Player.getPosition(),2)
-                elif throw == 1:
-                    return throwItem(Player.getPosition(),2)
-                elif use == 1:
-                    return useItem(2)
-            elif key == 'v' :
-                if pick == 1:
-                    return pickItem(Player.getPosition(),3)
-                elif throw == 1:
-                    return throwItem(Player.getPosition(),3)
-                elif use == 1:
-                    return useItem(3)
-            elif key == 'b' :
-                if pick == 1:
-                    return pickItem(Player.getPosition(),4)
-                elif throw == 1:
-                    return throwItem(Player.getPosition(),4)
-                elif use == 1:
-                    return useItem(4)
-            elif key == 'n' :
-                if pick == 1:
-                    return pickItem(Player.getPosition(),5)
-                elif throw == 1:
-                    return throwItem(Player.getPosition(),5)
-                elif use == 1:
-                    return useItem(5)
-            elif key == 'z' :
-                pick, throw, use = 0,0,0
-                return move('north')
-            elif key == 'q' :
-                pick, throw, use = 0,0,0
-                return move('west')
-            elif key == 's' :
-                pick, throw, use = 0,0,0
-                return move('south')
-            elif key == 'd' :
-                pick, throw, use = 0,0,0
-                return move('east')
-            elif key == 'o' :
-                pick, throw, use = 0,0,0
-                return altDescript()
-            elif key == 'r' :
-                pick, throw, use = 0,0,0
-                return pickList()
-            elif key == 'j' :
-                pick, throw, use = 0,0,0
-                return throwList()
-            elif key == 'e' :
-                pick, throw, use = 0,0,0
-                return useList()
-            elif key == 'a' :
-                pick, throw, use = 0,0,0
-                return attack()
-            elif key == '\x1b' :
-                exitGame()
-            time.sleep(0.2)	
-
+        command = raw_input()
+        command = command.split()
+        if command[0] == controls[0]:
+            return altDescript() 
+        elif command[0] == controls[1]:
+            return move(command[0])
+        elif command[0] == controls[2]:
+            return move(command[0])
+        elif command[0] == controls[3]:
+            return move(command[0])
+        elif command[0] == controls[4]:
+            return move(command[0])
+        elif command[0] == controls[5]:
+            return "AAAAAAAAAARGH!!!!!!!"
+        elif command[0] == controls[6]:
+            return attack()
+        elif command[0] == controls[7]:
+            return useList()
+        elif command[0] == controls[8]:
+            return throwList()
+        elif command[0] == controls[9]:
+            return pickList()
+        elif command[0] == controls[10]:
+            exitGame()
 #==================================================================================
 #ACTIONS
 #==================================================================================

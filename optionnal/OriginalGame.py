@@ -3,6 +3,7 @@
 #==================================================================================
 
 import Map
+import interprete
 import Player
 import Monsters
 import Background
