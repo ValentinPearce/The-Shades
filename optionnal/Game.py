@@ -35,6 +35,8 @@ def isInput(): # Recupere les actions du clavier
 def getAction(): # Traite les interactions clavier
     while 1:
         command = raw_input()
+        if len(command) == 0:
+            return descript()
         command = command.split()
         if command[0] == controls[0]:
             return altDescript() 
@@ -56,8 +58,53 @@ def getAction(): # Traite les interactions clavier
             return throwList()
         elif command[0] == controls[9]:
             return pickList()
+        elif command[0] == "w" and Map.isItem(Player.getPosition()) >= 1:
+            if pick == 1:
+                return pickItem(Player.getPosition(),0)
+            elif use == 1:
+                return useItem(0)
+            elif throw == 1:
+                return throwItem(Player.getPosition(),0)
+        elif command[0] == "x" and Map.isItem(Player.getPosition()) >= 1:
+            if pick == 1:
+                return pickItem(Player.getPosition(),1)
+            elif use == 1:
+                return useItem(1)
+            elif throw == 1:
+                return throwItem(Player.getPosition(),1)
+        elif command[0] == "c" and Map.isItem(Player.getPosition()) >= 1:
+            if pick == 1:
+                return pickItem(Player.getPosition(),2)
+            elif use == 1:
+                return useItem(2)
+            elif throw == 1:
+                return throwItem(Player.getPosition(),2)
+        elif command[0] == "v" and Map.isItem(Player.getPosition()) >= 1:
+            if pick == 1:
+                return pickItem(Player.getPosition(),3)
+            elif use == 1:
+                return useItem(3)
+            elif throw == 1:
+                throwItem(Player.getPosition(),3)
+        elif command[0] == "b" and Map.isItem(Player.getPosition()) >= 1:
+            if pick == 1:
+                return pickItem(Player.getPosition(),4)
+            elif use == 1:
+                return useItem(4)
+            elif throw == 1:
+                return throwItem(Player.getPosition(),4)
+        elif command[0] == "n" and Map.isItem(Player.getPosition()) >= 1:
+            if pick == 1:
+                return pickItem(Player.getPosition(),5)
+            elif use == 1:
+                return useItem(5)
+            elif throw == 1:
+                return throwItem(Player.getPosition(),5)
         elif command[0] == controls[10]:
             exitGame()
+        else:
+            return descript()
+
 #==================================================================================
 #ACTIONS
 #==================================================================================
