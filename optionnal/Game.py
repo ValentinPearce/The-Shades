@@ -11,7 +11,7 @@ import select, tty, termios, sys, time, random, string
 defaultTerminal = termios.tcgetattr(sys.stdin)
 pick,throw, use = 0,0,0
 
-controls = ["look","north","south","east","west","shout","attack","use","throw","pick","exit"]
+controls = ["look","north","south","east","west","shout","fight","use","throw","pick","exit"]
 
 def init(): # Defini les variables de depart
     global descript, myBackground
@@ -21,7 +21,7 @@ def init(): # Defini les variables de depart
     Player.setHealth()
     Player.setPower()
     Map.generate(6)
-    descript = descript()
+    descript = baseDescript()
 #    tty.setcbreak(sys.stdin.fileno())
     return descript
 
@@ -33,10 +33,11 @@ def isInput(): # Recupere les actions du clavier
    return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
 
 def getAction(): # Traite les interactions clavier
+    global pick, use, throw
     while 1:
         command = raw_input()
         if len(command) == 0:
-            return descript()
+            return baseDescript()
         command = command.split()
         if command[0] == controls[0]:
             return altDescript() 
@@ -103,14 +104,14 @@ def getAction(): # Traite les interactions clavier
         elif command[0] == controls[10]:
             exitGame()
         else:
-            return descript()
+            return baseDescript()
 
 #==================================================================================
 #ACTIONS
 #==================================================================================
 
-def descript(): # Recupere la description de base de la zone active
-    return  Map.getDescript(Player.getPosition())
+def baseDescript(): # Recupere la description de base de la zone active
+    return Map.getDescript(Player.getPosition())
 
 def altDescript(): # Recupere la description avancee de la zone active
     return Map.getAltDescript(Player.getPosition())
@@ -120,7 +121,7 @@ def move(direction): # Deplace le joueur si possible
     if Map.isMonster(Player.getPosition()) == 0 or flee == 6:
         answer = Map.check(Player.getPosition(),direction)
         if answer == 0:
-            return 'Il y a un mur dans cette direction'
+            return "You can't go this way. Unless, of course, you can walk through walls!"
         elif answer == 1 :
             Player.move(direction)
             Player.editTime(10)

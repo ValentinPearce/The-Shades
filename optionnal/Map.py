@@ -178,7 +178,7 @@ def getDescript(position): # Genere la description de la zone dans laquelle se t
     else:
         descript = descript + " an exit west."
     if len(map[position[0]][position[1]]["monster"]) != 0:
-        descript += " ~~~~~~~~~~~~~~~~~~~~~~~~ " + " A wild " + map[position[0]][position[1]]["monster"]["name"] + " appears! You must fight!"
+        descript += " ~~~~~~~~~~~~~~~~~~~~~~~~~ " + " A wild " + map[position[0]][position[1]]["monster"]["name"] + " appears! You must fight!"
     return descript
 
 def getAltDescript(position): # Ajoute quelques informations a la description de base

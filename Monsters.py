@@ -1,5 +1,6 @@
 import random
-monsters = (
+
+# Liste des monstres. Il est possible d'en rajouter en suivant le modele. ATTENTION: Le rapport rate (probabilité) / power (force) / health (vie) influe énormément sur la jouabilité.
     {"name" : "Une licorne rose touffue", "rate" : 1, "power" : 1, "health" : 1, "fight" : "La licorne rose touffue"},
     {"name" : "Un mendiant affame", "rate" : 3, "power" : 6, "health" : 6, "fight" : "Le mendiant affame"},
     {"name" : "Un mendiant", "rate" : 4, "power" : 7, "health" : 6, "fight" : "Le mendiant"},
@@ -20,7 +21,7 @@ monsters = (
     {"name" : "Un Alduin", "rate" : 3, "power" : 12, "health" : 16, "fight" : "Alduin"},
     {"name" : "Une licorne rose invisible", "rate" : 1, "power" :  14, "health" : 20, "fight" : "La Licorne Rose Invisible"})
 
-def addRandom():
+def addRandom(): # Renvoie un monstre aléatoire de la liste
     rate = monsters[0]["rate"]
     maxRate = 0
     for i in range (len(monsters)):

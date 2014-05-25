@@ -9,7 +9,7 @@
     (_                                   _(O           ||   [east]              ||
     ^_                                     __          ||   [west]              ||
     \_                                      _          ||   [look]              ||
-     O                                      ^_         ||   [attack]            ||
+     O                                      ^_         ||   [fight]             ||
      \o\                                    \(         ||   [use]               ||
       O                                     \)_        ||   [throw]             ||
       __                                     \O        ||   [take]              ||
