@@ -4,7 +4,6 @@
 
 import Map
 import Player
-import Monsters
 import Background
 import select, tty, termios, sys, time, random
 defaultTerminal = termios.tcgetattr(sys.stdin)

@@ -1,6 +1,7 @@
 import random
 
-# Liste des monstres. Il est possible d'en rajouter en suivant le modele. ATTENTION: Le rapport rate (probabilité) / power (force) / health (vie) influe énormément sur la jouabilité.
+# Liste des monstres. Il est possible d'en rajouter en suivant le modele. ATTENTION: Le rapport rate (probabilite) / power (force) / health (vie) influe enormement sur la jouabilite.
+monsters = (
     {"name" : "Une licorne rose touffue", "rate" : 1, "power" : 1, "health" : 1, "fight" : "La licorne rose touffue"},
     {"name" : "Un mendiant affame", "rate" : 3, "power" : 6, "health" : 6, "fight" : "Le mendiant affame"},
     {"name" : "Un mendiant", "rate" : 4, "power" : 7, "health" : 6, "fight" : "Le mendiant"},
@@ -21,7 +22,12 @@ import random
     {"name" : "Un Alduin", "rate" : 3, "power" : 12, "health" : 16, "fight" : "Alduin"},
     {"name" : "Une licorne rose invisible", "rate" : 1, "power" :  14, "health" : 20, "fight" : "La Licorne Rose Invisible"})
 
-def addRandom(): # Renvoie un monstre aléatoire de la liste
+def checkList(): # Verifie que tous les elements de la liste sont bien parametres
+    for i in range (len(monsters)):
+        monsters[i]['name'], monsters[i]['fight'] == str(monsters[i]['name']), str(monsters[i]['fight'])
+        if not ( isinstance(monsters[i]['rate'], int) and isinstance(monsters[i]['power'], int) and isinstance(monsters[i]['health'], int)):
+            monsters.pop(i)
+def addRandom(): # Renvoie un monstre aleatoire de la liste
     rate = monsters[0]["rate"]
     maxRate = 0
     for i in range (len(monsters)):
@@ -32,3 +38,4 @@ def addRandom(): # Renvoie un monstre aléatoire de la liste
         rate += monsters[index + 1]["rate"] 
         index += 1
     return monsters[index]
+

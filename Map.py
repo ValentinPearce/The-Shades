@@ -1,3 +1,4 @@
+
 import random, Monsters, Items
 map=[]
 path=[]
@@ -23,7 +24,7 @@ def generate(size): # Fonction principale du module
     addExits(size)
     setMonstersItems(size)
 
-def createEmpty(size): # Cree une carte vide carée de size*size cases.
+def createEmpty(size): # Cree une carte vide caree de size*size cases.
     for i in range (size):
         map.append([])
         for j in range (size):
@@ -100,7 +101,7 @@ def createMaze(size): # Cree un labyrinthe parfait (bas de boucles, pas de zones
          i = path[len(path) - 1][0]
          j = path[len(path) - 1][1]
 
-def printMap(): # Affiche un visuel de la carte. Destine aux developpeurs. (^ signifie un mur au nord, _ au sud, = les deux et | à l'est ou à l'ouest en fonction du côté.)
+def printMap(): # Affiche un visuel de la carte. Destine aux developpeurs. (^ signifie un mur au nord, _ au sud, = les deux et | a l'est ou a l'ouest en fonction du cote.)
     line=['','','','','','']
     for i in range (size): 
         for j in range (size):
@@ -122,7 +123,7 @@ def printMap(): # Affiche un visuel de la carte. Destine aux developpeurs. (^ si
                 line[i]=line[i]+' '
         print line[i]
 
-def addExits(size): # Ajoute des sorties (condition de victoire) au labyrinthe au sud et/ou à l'est
+def addExits(size): # Ajoute des sorties (condition de victoire) au labyrinthe au sud et/ou a l'est
     quantum = random.randint(2,4)
     for exit in range(quantum):
         side = random.randint(0,1)
@@ -131,7 +132,9 @@ def addExits(size): # Ajoute des sorties (condition de victoire) au labyrinthe a
         else:
             map[random.randint(0,size - 1)][size - 1]['east'] = 2
 
-def setMonstersItems(size): # defini aléatoirement la présence de monstres et d'objets dans chaque zone
+def setMonstersItems(size): # defini aleatoirement la presence de monstres et d'objets dans chaque zone
+    Monsters.checkList()
+    Items.checkList()
     for i in range (size):
         for j in range (size):
             if (i,j) != (0,0) :
@@ -145,7 +148,7 @@ def setMonstersItems(size): # defini aléatoirement la présence de monstres et 
 # ACCESSEURS
 #========================================
 
-def check(position, direction): # Vérifie la presence d'un mur dans la direction demandée et renvoie la réponse.
+def check(position, direction): # Verifie la presence d'un mur dans la direction demandee et renvoie la reponse.
     answer = map[position[0]][position[1]][direction]
     return answer
 
@@ -237,10 +240,10 @@ def getItemList(position): # Renvoie la liste d'objets dans la zone et leur donn
         descript += map[position[0]][position[1]]["items"][i]["liste"]
     return descript
 
-def getItem(position, index): # Renvoie l'objet nºindex de la zone
+def getItem(position, index): # Renvoie l'objet n^index de la zone
     return map[position[0]][position[1]]["items"][index]
 
-def getItemName(position, index): # Renvoie le nom de l'objet nºindex de la zone
+def getItemName(position, index): # Renvoie le nom de l'objet n^index de la zone
     return map[position[0]][position[1]]["items"][index]["name"]
 
 def isMonster(position): # Renvoie le nombre de monstre de la zone
@@ -256,10 +259,10 @@ def getMonsterPower(position): # Renvoie la force du monstre de la zone
 # MODIFICATEURS
 #==================================
 
-def addItem(position,item): # ajoute un objet à une zone
+def addItem(position,item): # ajoute un objet a une zone
     map[position[0]][position[1]]['items'].append(item)            
 
-def removeItem(position,index): # retire un objet à une zone
+def removeItem(position,index): # retire un objet a une zone
     map[position[0]][position[1]]['items'].pop(index)            
 
 

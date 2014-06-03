@@ -1,6 +1,6 @@
 import random
 
-# Liste des objets. Il est possible d'en rajouter en suivant le modele. ATTENTION: Le rapport rate (probabilité) / Modifier (modificateur) influe énormément sur la jouabilité.
+# Liste des objets. Il est possible d'en rajouter en suivant le modele. ATTENTION: Le rapport rate (probabilite) / Modifier (modificateur) influe enormement sur la jouabilite.
 items = (
 	{"name" : "une Fee" , "rate" : 4 , "type" : 0 , "Modifier" : 6 , "liste" : "une Fee-------------+6 "},
 	{"name" : "un Coeur" , "rate" : 10 , "type" : 0 , "Modifier" : 1 , "liste" : "un Coeur------------+1 " },
@@ -19,8 +19,13 @@ items = (
 	{"name" : "un Katana" , "rate" : 6 , "type" : 1 , "Modifier" : 2 , "liste" : "un Katana-----------+2 "},
 	{"name" : "un Tromblon" , "rate" : 6 , "type" : 1 , "Modifier" : 2 , "liste" : "un Tromblon---------+2 "})
 
+def checkList(): # Verifie que tous les elements de la liste sont bien parametres
+    for i in range (len(items)):
+        items[i]['name'], items[i]['liste'] == str(items[i]['name']), str(items[i]['liste'])
+        if not ( isinstance(items[i]['rate'], int) and isinstance(items[i]['type'], int) and isinstance(items[i]['Modifier'], int)):
+            items.pop(i)
 
-def addRandom(): # Renvoie un objet aléatoire de la liste
+def addRandom(): # Renvoie un objet aleatoire de la liste
 	maxRate = 0
 	for i in range (len(items)):
 		maxRate += items[i]["rate"]

@@ -34,22 +34,22 @@ def getTime(): # Renvoie le temps passe par le joueur
 def getPower(): # Renvoie la force du joueur
 	return player["power"]
 
-def getEquipModifier(): # Renvoie le bonus de force de l'objet equipé
+def getEquipModifier(): # Renvoie le bonus de force de l'objet equipe
 	if len(player['equip']):
 		return player['equip']['Modifier'] 
 	else:
 		return 0
 
-def isEquip(): # Renvoie 0 si aucun objet n'est équipé et 1 si un objet est équipé
+def isEquip(): # Renvoie 0 si aucun objet n'est equipe et 1 si un objet est equipe
 	return len(player["equip"])
  
 def isItem(): # Renvoie le nombre d'objets dans l'inventaire
 	return len(player["inventory"])
 
-def getItem(index): # Renvoie l'objet nºindex de l'inventaire
+def getItem(index): # Renvoie l'objet n index de l'inventaire
 	return player["inventory"][index]
 
-def getItemName(index): # Renvoie le nom de l'objet nºindex de l'inventaire
+def getItemName(index): # Renvoie le nom de l'objet no index de l'inventaire
 	return player["inventory"][index]["name"]
 
 def getItemList(): # Renvoie la liste des objets de l'inventaire avec un index (wxcvbn) 
@@ -75,10 +75,10 @@ def getItemList(): # Renvoie la liste des objets de l'inventaire avec un index (
 #MODIFICATEURS
 #=============================================
 
-def editHealth(modifier): # Modifie la vie du joueur d'une valeur égale à "modifier"
+def editHealth(modifier): # Modifie la vie du joueur d'une valeur egale a "modifier"
 	player['health']=player['health']+modifier
 
-def move(direction): # Modifie la position du joueur dans la direction souhaitée
+def move(direction): # Modifie la position du joueur dans la direction souhaitee
 	if direction=="north":
 		player['position']=(player['position'][0]-1, player['position'][1])
 	elif direction=="south":
