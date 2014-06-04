@@ -5,7 +5,7 @@
 import Map
 import Player
 import Background
-import select, tty, termios, sys, time, random
+import select, tty, termios, sys, time, random, os
 defaultTerminal = termios.tcgetattr(sys.stdin)
 items = 0
 pick = 0
@@ -270,7 +270,8 @@ def checkTime(difficulty): # Verifie si le joueur est considere comme perdu a ja
 
 def exitGame(): # Quitte le jeu en remettant les parametres par defaut
     global defaultTerminal
+    time.sleep(5)
+    os.system("clear")
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, defaultTerminal)
     sys.exit()
-
 
