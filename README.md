@@ -12,7 +12,7 @@ Instructions
 
 Pour le lancer, placez vous dans le répertoire du jeu et entrez la commande suivante dans votre terminal:
 
-python The-Shades.py
+`python The-Shades.py`
 
 Pour vous déplacer, les touches Z,Q,S et D correspondent respectivement aux direction Nord, Ouest, Sud et Est.
 Vous pouvez avoir une description plus précise en appuyant sur la touche O.
